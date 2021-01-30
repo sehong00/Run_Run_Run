@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+        <solid android:color="#00FFFFFF" /> //배경색
+
+        //태두리 내부 여백
+        <padding
+            android:bottom="15dp"
+            android:left="15dp"
+            android:right="15dp"
+            android:top="15dp" />
+
+        <stroke
+            android:width="3dp"
+            android:color="@android:color/black" /> //선색
+
+        <corners
+            android:topLeftRadius="50dp"
+            android:topRightRadius="50dp"
+            android:bottomLeftRadius="50dp"
+            android:bottomRightRadius="50dp"  /> // 선 휘는각도
+
+        />
+
+</shape>
