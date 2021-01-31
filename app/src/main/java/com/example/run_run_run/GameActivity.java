@@ -2,6 +2,7 @@ package com.example.run_run_run;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -22,6 +23,7 @@ public class GameActivity extends AppCompatActivity {
         gameView = new GameView(this, point.x, point.y);
 
         setContentView(gameView);
+
     }
 
     @Override

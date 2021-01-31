@@ -10,24 +10,22 @@ import static com.example.run_run_run.GameView.screenRatioX;
 import static com.example.run_run_run.GameView.screenRatioY;
 
 
-public class GameBullet {
+public class GameKnife {
 
     int x, y, width, height;
-    Bitmap bullet;
+    Bitmap knife;
 
-    GameBullet(Resources res) {
+    GameKnife(Resources res) {
 
-        //원본 이미지 Bitmap
-        bullet = BitmapFactory.decodeResource(res, R.drawable.knife);
+        knife = BitmapFactory.decodeResource(res, R.drawable.knife); // 원본 이미지 Bitmap
 
-        //좌우반전 이미지 효과 및 Bitmap 만들기
-        Matrix sideInversion = new Matrix();
+        Matrix sideInversion = new Matrix(); // 좌우반전 이미지 효과 및 Bitmap 만들기
         sideInversion.setScale(-1, 1);
-        Bitmap bullet = Bitmap.createBitmap(this.bullet, 0, 0,
-                this.bullet.getWidth(), this.bullet.getHeight(), sideInversion, false);
+        Bitmap knife_reversion = Bitmap.createBitmap(this.knife, 0, 0,
+                this.knife.getWidth(), this.knife.getHeight(), sideInversion, false);
 
-        width = bullet.getWidth();
-        height = bullet.getHeight();
+        width = knife_reversion.getWidth();
+        height = knife_reversion.getHeight();
 
         width /= 20;
         height /= 20;
@@ -35,7 +33,7 @@ public class GameBullet {
         width = (int) (width * screenRatioX);
         height = (int) (height * screenRatioY);
 
-        this.bullet = Bitmap.createScaledBitmap(bullet, width, height, false);
+        this.knife = Bitmap.createScaledBitmap(knife_reversion, width, height, false);
 
     }
 
