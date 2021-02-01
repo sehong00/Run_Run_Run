@@ -1,6 +1,8 @@
+
 package com.example.run_run_run;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +27,7 @@ public class PlayerListAdapter extends ArrayAdapter<Person> {
 
     public PlayerListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Person> objects) {
         super(context, resource, objects);
-        this.mContext = mContext;
+        this.mContext = context;
         this.mResouse = resource;
 
     }
@@ -41,12 +45,14 @@ public class PlayerListAdapter extends ArrayAdapter<Person> {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResouse, parent, false);
 
-        TextView playerimg = (TextView) convertView.findViewById(R.id.player_goggle_img);
+
+        ImageView playerimg = (ImageView) convertView.findViewById(R.id.player_goggle_img);
+
         TextView playername = (TextView) convertView.findViewById(R.id.player_google_name);
         TextView playerhighscore = (TextView) convertView.findViewById(R.id.player_highScoreTxt);
         TextView playergpa = (TextView) convertView.findViewById(R.id.player_gpa);
 
-        playerimg.setText(player_img);
+        playerimg.setImageURI(Uri.parse(player_img));
         playername.setText(player_name);
         playerhighscore.setText(player_highscore);
         playergpa.setText(player_gpa);
