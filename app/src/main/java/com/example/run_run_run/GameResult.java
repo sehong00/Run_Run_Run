@@ -19,7 +19,7 @@ public class GameResult extends AppCompatActivity {
 
     public static float highscore, totalscore, meanscore;
     FirebaseDatabase database;
-    DatabaseReference ref;
+    DatabaseReference ref, res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +76,13 @@ public class GameResult extends AppCompatActivity {
         
         // 그리고 위에 게임결과 조건문 바꿔야함
         // 밑에 두줄에서 왜 오류가 나는건지
-        //ref.child(nickName).setValue(null);
+
+        //ref.child("PS H").setValue(null); 이렇게 바꿔야 하는 거 같은데 변수 설정으로는 안되잖아
+
+        res = database.getReference("users/" + nickName);
+        res.setValue(null);
+
         ref.child(nickName).setValue(u);
-
-
 
     }
 }
