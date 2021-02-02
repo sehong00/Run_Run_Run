@@ -84,11 +84,11 @@
             android:background="@drawable/layout_border"
             android:layout_below="@id/my_profile">
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/player_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            </ListView>
+            </androidx.recyclerview.widget.RecyclerView>
         </RelativeLayout>
 
     </RelativeLayout>

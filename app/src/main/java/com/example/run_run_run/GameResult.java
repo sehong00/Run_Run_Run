@@ -9,9 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import static com.example.run_run_run.HomeActivity.photoUrl;
+import static com.example.run_run_run.HomeActivity.nickName;
+
 public class GameResult extends AppCompatActivity {
 
     public static float highscore, totalscore, meanscore;
+    FirebaseDatabase database;
+    DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +34,9 @@ public class GameResult extends AppCompatActivity {
         TextView RoundTxt = findViewById(R.id.round);
 
         final SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
+
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference("users");
 
         if (highscore < (float) prefs.getInt("score", 0) + (float) prefs.getInt("round", 0) / 2) {
             SharedPreferences.Editor editor = prefs.edit();
@@ -53,6 +64,17 @@ public class GameResult extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        int info_inserted = 2;
+        SharedPreferences.Editor editor19 = prefs.edit();
+        editor19.putInt("try", info_inserted);
+        editor19.apply();
+
+
+
+        User_Information u = new User_Information(photoUrl, nickName, highscore, meanscore);
+        ref.child(nickName).setValue(null);
+        ref.child(nickName).setValue(u);
 
 
 
