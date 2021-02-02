@@ -19,6 +19,7 @@
             android:id="@+id/player_google_name"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
+            android:textColor="@color/black"
             android:text="닉네임"
             android:textSize="20dp"
             android:layout_marginLeft="20dp">
@@ -28,6 +29,7 @@
             android:layout_width="120dp"
             android:id="@+id/player_highScoreTxt"
             android:layout_height="60dp"
+            android:textColor="@color/black"
             android:text="0 점"
             android:textSize="15dp"
             android:layout_marginLeft="20dp">
@@ -37,6 +39,7 @@
             android:layout_width="match_parent"
             android:id="@+id/player_gpa"
             android:layout_height="60dp"
+            android:textColor="@color/black"
             android:text="3.000"
             android:textSize="15dp"
             android:layout_marginRight="20dp">

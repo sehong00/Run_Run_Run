@@ -35,8 +35,7 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
     public PlayerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_view_layout, parent, false);
         PlayerViewHolder holder = new PlayerViewHolder(view);
-
-        return null;
+        return holder;
     }
 
     @Override
@@ -44,8 +43,8 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
         Glide.with(holder.itemView).load(players_list.get(position).getPhotouri())
                 .into(holder.playerimg);
         holder.playername.setText(players_list.get(position).getPlayername());
-        holder.playerhighscore.setText((int) players_list.get(position).getHighscore());
-        holder.playergpa.setText((int) players_list.get(position).getPlayerscore());
+        holder.playerhighscore.setText(""+players_list.get(position).getHighscore());
+        holder.playergpa.setText(""+players_list.get(position).getPlayerscore());
 
 
     }

@@ -172,7 +172,7 @@ public class HomeActivity extends AppCompatActivity {
                     User_Info user_info = snapshot1.getValue(User_Info.class); // 만들어줬던 User_Info 객체에 데이터를 담는다.
                     arrayList.add(user_info); // 담은 데이터들을 배열 리스트에 넣고 리스트 뷰로 보낼 준비
                 }
-                //adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
+                adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
             }
 
             @Override
@@ -182,7 +182,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        PlayerListAdapter adapter = new PlayerListAdapter(arrayList, this);
+        adapter = new PlayerListAdapter(arrayList, this);
         recyclerView.setAdapter(adapter);
 
 
