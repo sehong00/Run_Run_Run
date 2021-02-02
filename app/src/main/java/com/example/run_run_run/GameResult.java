@@ -74,6 +74,7 @@ public class GameResult extends AppCompatActivity {
 
         User_Information u = new User_Information(photoUrl, nickName, highscore, meanscore);
         
+        // 그리고 위에 게임결과 조건문 바꿔야함
         // 밑에 두줄에서 왜 오류가 나는건지
         //ref.child(nickName).setValue(null);
         ref.child(nickName).setValue(u);
