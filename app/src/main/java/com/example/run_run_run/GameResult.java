@@ -73,7 +73,9 @@ public class GameResult extends AppCompatActivity {
 
 
         User_Information u = new User_Information(photoUrl, nickName, highscore, meanscore);
-        ref.child(nickName).setValue(null);
+        
+        // 밑에 두줄에서 왜 오류가 나는건지
+        //ref.child(nickName).setValue(null);
         ref.child(nickName).setValue(u);
 
 
