@@ -3,6 +3,7 @@ package com.example.run_run_run;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
@@ -32,6 +33,9 @@ public class LoadingActivity extends AppCompatActivity {
         Intent intent2 = getIntent();
         nickName = intent2.getStringExtra("nickName3");
         photoUrl = intent2.getStringExtra("photoUrl3");
+
+        MediaPlayer mediaPlayer = MediaPlayer.create(LoadingActivity.this, R.raw.pop);
+        mediaPlayer.start();
 
     }
 

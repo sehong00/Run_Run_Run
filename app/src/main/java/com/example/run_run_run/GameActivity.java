@@ -28,6 +28,7 @@ public class GameActivity extends AppCompatActivity {
         gameView = new GameView(this, point.x, point.y);
 
         mediaPlayer = MediaPlayer.create(GameActivity.this, R.raw.music);
+        mediaPlayer.setVolume((float) 0.2, (float) 0.2);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
 

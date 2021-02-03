@@ -43,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
     private DatabaseReference databaseerence;
 
     FirebaseDatabase database;
-    DatabaseReference ref, res;
+    DatabaseReference ref, res, reg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,32 @@ public class HomeActivity extends AppCompatActivity {
 
         tv_google_name = findViewById(R.id.tv_google_name);
         tv_google_name.setText(nickName); // 닉네임 text를 텍스트 뷰에 세팅
+
+        ImageView imageView = (ImageView) findViewById(R.id.select_character);
+        imageView.setImageResource(R.drawable.amongus_white);
+        ImageView imageView2 = (ImageView) findViewById(R.id.select_weapon);
+        imageView2.setImageResource(R.drawable.notebook);
+        ImageView imageView3 = (ImageView) findViewById(R.id.select_map);
+        imageView3.setImageResource(R.drawable.map);
+
+        Button btn_map = (Button) findViewById(R.id.btn_map);
+        Button btn_weapon = (Button) findViewById(R.id.btn_weapon);
+        Button btn_character = (Button) findViewById(R.id.btn_character);
+        btn_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        btn_weapon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        btn_character.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
 
         iv_google_img = findViewById(R.id.iv_goggle_img);
         Glide.with(this).load(photoUrl).into(iv_google_img); // 프로필 Url을 이미지 뷰에 세팅
@@ -107,6 +133,17 @@ public class HomeActivity extends AppCompatActivity {
         ref = database.getReference("users");
         User_Information u = new User_Information(photoUrl, nickName, highscore, meanscore);
         res = database.getReference("users/" + nickName);
+/*
+        reg = database.getReference("using/" + nickName);
+        reg.setValue(null);
+        reg.setValue(LoginActivity.qqq);
+*/
+
+
+
+
+
+
 
 //        res.setValue(null);
 //        ref.child(nickName).setValue(u);

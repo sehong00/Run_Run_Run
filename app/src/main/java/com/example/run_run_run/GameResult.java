@@ -22,7 +22,7 @@ public class GameResult extends AppCompatActivity {
 
     public static float highscore, totalscore, meanscore;
     FirebaseDatabase database;
-    DatabaseReference ref, res;
+    DatabaseReference ref, res, rer;
 
     public static String nickName, photoUrl;
 
@@ -55,16 +55,22 @@ public class GameResult extends AppCompatActivity {
             highscore = (float) prefs.getInt("score", 0) + ((float) prefs.getInt("round", 0)) / 2;
             highScoreTxt.setText("HighScore: " + highscore);
 
+            nickName = SharedPreference.getAttribute(getApplicationContext(), "user_name");
 
-            nickName = LoginActivity.nickName;
-            photoUrl = LoginActivity.photoUrl;
+
             System.out.println("ㅇㅇ3" + nickName);
-            System.out.println("ㅇㅇ4" + photoUrl);
+/*
+            rer = database.getReference("using/" + nickName);
+            String sss = rer.getKey();
+            System.out.println("제발" + sss);
 
-            User_Information u = new User_Information(photoUrl, nickName, highscore, meanscore);
-            System.out.println("ㅇㅇ5" + photoUrl);
-            res = ref.child(nickName);
 
+            User_Information u = new User_Information(photoUrl, sss, highscore, meanscore);
+            System.out.println("ㅇㅇ5" + sss);
+
+*/
+
+            res = database.getReference("users/" + nickName);
             res.child("highscore").setValue(null);
             res.child("playerscore").setValue(null);
             res.child("highscore").setValue(highscore);

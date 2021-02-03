@@ -27,6 +27,9 @@ public class IntroActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.intro_progressbar);
         textView = findViewById(R.id.intro_text);
 
+        MediaPlayer mediaPlayer = MediaPlayer.create(IntroActivity.this, R.raw.pop2);
+        mediaPlayer.start();
+
         mVideoview = (VideoView) findViewById(R.id.testVideo);
         mVideoview.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.itmrun1));
         mVideoview.start();
@@ -42,6 +45,8 @@ public class IntroActivity extends AppCompatActivity {
         progressBar.setScaleY(3f);
 
         progressAnimation();
+
+
 
     }
 
