@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.view.MotionEvent;
@@ -17,6 +18,8 @@ import android.view.SurfaceView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import static com.example.run_run_run.GameActivity.mediaPlayer;
+
 
 public class GameView extends SurfaceView implements Runnable {
 
@@ -65,7 +68,7 @@ public class GameView extends SurfaceView implements Runnable {
         } else
             soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
 
-        sound = soundPool.load(activity, R.raw.knife, 1);
+        sound = soundPool.load(activity, R.raw.knife, 2);
 
         this.screenX = screenX;
         this.screenY = screenY;
@@ -144,6 +147,8 @@ public class GameView extends SurfaceView implements Runnable {
 
         background1.x -= 10 * screenRatioX;
         background2.x -= 10 * screenRatioX;
+
+
 
         if (background1.x + background1.background.getWidth() < 0) {
             background1.x = screenX;
@@ -443,6 +448,7 @@ public class GameView extends SurfaceView implements Runnable {
                 getHolder().unlockCanvasAndPost(canvas);
                 saveIfHighScore();
                 waitBeforeExiting ();
+                GameActivity.mediaPlayer.stop();
                 return;
             }
 
@@ -562,4 +568,7 @@ public class GameView extends SurfaceView implements Runnable {
         knifes.add(bullet);
 
     }
+
+
+
 }

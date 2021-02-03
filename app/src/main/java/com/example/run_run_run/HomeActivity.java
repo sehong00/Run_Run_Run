@@ -39,11 +39,11 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<User_Info> arrayList;
-//    private FirebaseDatabase database;
-    private DatabaseReference databaseReference;
+//    private FirebaseDatabase databaseRef;
+    private DatabaseReference databaseerence;
 
     FirebaseDatabase database;
-    DatabaseReference ref;
+    DatabaseReference ref, res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,9 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent_2 = new Intent(getApplicationContext(), LoadingActivity.class);
+                intent_2.putExtra("nickName2", nickName);
+                intent_2.putExtra("photoUrl2", photoUrl);
+
                 startActivity(intent_2);
             }
         });
@@ -103,11 +106,15 @@ public class HomeActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("users");
         User_Information u = new User_Information(photoUrl, nickName, highscore, meanscore);
+        res = database.getReference("users/" + nickName);
+
+//        res.setValue(null);
+//        ref.child(nickName).setValue(u);
 
 
         final SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
         int info_inserted = 0;
-
+/*
         if (prefs.getInt("try", 0) == 1) {
             ref.child(nickName).setValue(null);
             ref.child(nickName).setValue(u);
@@ -123,7 +130,7 @@ public class HomeActivity extends AppCompatActivity {
             editor19.putInt("try", info_inserted);
             editor19.apply();
         }
-
+*/
         SharedPreferences.Editor editor21 = prefs.edit();
         editor21.putString("nick", nickName);
         editor21.apply();

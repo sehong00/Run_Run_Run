@@ -5,15 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import static com.example.run_run_run.HomeActivity.photoUrl;
-import static com.example.run_run_run.HomeActivity.nickName;
+//import static com.example.run_run_run.HomeActivity.photoUrl;
+//import static com.example.run_run_run.HomeActivity.nickName;
 
 public class GameResult extends AppCompatActivity {
 
@@ -21,10 +24,14 @@ public class GameResult extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference ref, res;
 
+    public static String nickName, photoUrl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_result);
+
+
 
 
         TextView highScoreTxt = findViewById(R.id.highestScoreTxt);
@@ -38,7 +45,7 @@ public class GameResult extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("users");
 
-        if (highscore < (float) prefs.getInt("score", 0) + (float) prefs.getInt("round", 0) / 2) {
+        if (highscore <= (float) prefs.getInt("score", 0) + (float) prefs.getInt("round", 0) / 2) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putInt("highscore", (int) prefs.getInt("score", 0));
             editor.apply();
@@ -47,6 +54,21 @@ public class GameResult extends AppCompatActivity {
             editor5.apply();
             highscore = (float) prefs.getInt("score", 0) + ((float) prefs.getInt("round", 0)) / 2;
             highScoreTxt.setText("HighScore: " + highscore);
+
+
+            nickName = LoginActivity.nickName;
+            photoUrl = LoginActivity.photoUrl;
+            System.out.println("ㅇㅇ3" + nickName);
+            System.out.println("ㅇㅇ4" + photoUrl);
+
+            User_Information u = new User_Information(photoUrl, nickName, highscore, meanscore);
+            System.out.println("ㅇㅇ5" + photoUrl);
+            res = ref.child(nickName);
+
+            res.child("highscore").setValue(null);
+            res.child("playerscore").setValue(null);
+            res.child("highscore").setValue(highscore);
+            res.child("playerscore").setValue(meanscore);
         }
 
         ScoreTxt.setText("Score: " + prefs.getInt("score", 0));
@@ -69,20 +91,6 @@ public class GameResult extends AppCompatActivity {
         SharedPreferences.Editor editor19 = prefs.edit();
         editor19.putInt("try", info_inserted);
         editor19.apply();
-
-
-
-        User_Information u = new User_Information(photoUrl, nickName, highscore, meanscore);
-        
-        // 그리고 위에 게임결과 조건문 바꿔야함
-        // 밑에 두줄에서 왜 오류가 나는건지
-
-        //ref.child("PS H").setValue(null); 이렇게 바꿔야 하는 거 같은데 변수 설정으로는 안되잖아
-
-        res = database.getReference("users/" + nickName);
-        res.setValue(null);
-
-        ref.child(nickName).setValue(u);
 
     }
 }

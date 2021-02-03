@@ -2,6 +2,7 @@ package com.example.run_run_run;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
@@ -11,6 +12,7 @@ public class LoadingActivity extends AppCompatActivity {
 
     ProgressBar progressBar_2;
     TextView textView_2;
+    public static String nickName, photoUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,10 @@ public class LoadingActivity extends AppCompatActivity {
         progressBar_2.setScaleY(3f);
 
         progressAnimation_2();
+
+        Intent intent2 = getIntent();
+        nickName = intent2.getStringExtra("nickName3");
+        photoUrl = intent2.getStringExtra("photoUrl3");
 
     }
 
