@@ -12,7 +12,7 @@ public class GameMoving {
 
     int toThrow = 0;
     boolean isGoingUp = false, isGoingDown = false;
-    int x, y, width, height, wingCounter = 0, shootCounter = 1;
+    int x, y, width, height;
     Bitmap flight, throw_knifes, dead;
     private GameView gameView;
 
@@ -44,25 +44,17 @@ public class GameMoving {
 
     }
 
-    Bitmap getFlight () {
+    Bitmap getFlight () { // 칼을 던질 때 모션 넣기
 
         if (toThrow != 0) {
 
             toThrow--;
             gameView.newKnife();
 
-            return throw_knifes;
+            return throw_knifes; // 칼을 던질 때 검은 색 임포스터로 바뀜
         }
-
-        /*
-        if (wingCounter == 0) {
-            wingCounter++;
-            return flight1;
-        }
-        wingCounter--;
-        */
-
-        return flight;
+        
+        return flight; // 다시 흰 색 임포스터로 바뀜
 
     }
 

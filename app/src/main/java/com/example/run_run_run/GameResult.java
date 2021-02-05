@@ -1,88 +1,90 @@
 package com.example.run_run_run;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-//import static com.example.run_run_run.HomeActivity.photoUrl;
-//import static com.example.run_run_run.HomeActivity.nickName;
+import com.google.firebase.database.ValueEventListener;
 
 public class GameResult extends AppCompatActivity {
 
-    public static float highscore, totalscore, meanscore;
+    public static float highscore;
     FirebaseDatabase database;
-    DatabaseReference ref, res, rer;
+    DatabaseReference ref, res;
 
-    public static String nickName, photoUrl;
+    private Float scoreresult, gpa;
+    private int number_of_subjects;
+    public static String nickName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_result);
 
-
-
-
         TextView highScoreTxt = findViewById(R.id.highestScoreTxt);
         TextView ScoreTxt = findViewById(R.id.ScoreTxt);
         TextView Numbers= findViewById(R.id.number_of_subjects);
-        TextView MeanScoreTxt = findViewById(R.id.meanScoreTxt);
-        TextView RoundTxt = findViewById(R.id.round);
+        TextView gpaTxt = findViewById(R.id.meanScoreTxt);
+
+        ImageView imageView = (ImageView) findViewById(R.id.background_result);
+        imageView.setImageResource(R.drawable.background_result);
 
         final SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
 
+        nickName = SharedPreference.getAttribute(getApplicationContext(), "user_name");
+
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("users");
+        res = ref.child(nickName);
 
-        if (highscore <= (float) prefs.getInt("score", 0) + (float) prefs.getInt("round", 0) / 2) {
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putInt("highscore", (int) prefs.getInt("score", 0));
-            editor.apply();
-            SharedPreferences.Editor editor5 = prefs.edit();
-            editor5.putInt("highscore_round", (int) prefs.getInt("round", 0));
-            editor5.apply();
-            highscore = (float) prefs.getInt("score", 0) + ((float) prefs.getInt("round", 0)) / 2;
-            highScoreTxt.setText("HighScore: " + highscore);
+        /*
+        res.child("highscore").addListenerForSingleValueEvent(new ValueEventListener() {
 
-            nickName = SharedPreference.getAttribute(getApplicationContext(), "user_name");
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                highscore = (float) snapshot.getValue();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-            System.out.println("ㅇㅇ3" + nickName);
+            }
+        });
+        */
+
+        scoreresult = prefs.getFloat("score", 0.0f);
+        number_of_subjects = prefs.getInt("number_of_subjects", 0);
+        gpa = scoreresult / number_of_subjects;
+
+//        highScoreTxt.setText("최고점수: " + highscore);
+        ScoreTxt.setText("점수: " + scoreresult);
+        Numbers.setText("과목 수: " + number_of_subjects);
+        gpaTxt.setText("학점: " + gpa);
 /*
-            rer = database.getReference("using/" + nickName);
-            String sss = rer.getKey();
-            System.out.println("제발" + sss);
-
-
-            User_Information u = new User_Information(photoUrl, sss, highscore, meanscore);
-            System.out.println("ㅇㅇ5" + sss);
-
-*/
-
-            res = database.getReference("users/" + nickName);
-            res.child("highscore").setValue(null);
-            res.child("playerscore").setValue(null);
-            res.child("highscore").setValue(highscore);
-            res.child("playerscore").setValue(meanscore);
+        if (highscore < scoreresult) {
         }
+*/
+        res.child("highscore").setValue(scoreresult);
+        res.child("playerscore").setValue(gpa);
 
-        ScoreTxt.setText("Score: " + prefs.getInt("score", 0));
-        Numbers.setText("num:" + prefs.getInt("number_of_subjects", 0));
-        totalscore = (float) prefs.getInt("score", 0) + ((float) prefs.getInt("round", 0)) / 2;
-        meanscore = totalscore / prefs.getInt("number_of_subjects", 0);
-        MeanScoreTxt.setText("Means: " + meanscore);
-        RoundTxt.setText("Round: " + prefs.getInt("round", 0));
+        /*
+        Float highscoreload = Float.valueOf(res.child("highscore").child(String.valueOf(scoreresult)).child("1").getKey());
+        if (highscoreload <= scoreresult) {
+            res.child("highscore").setValue(scoreresult);
+            res.child("highscore").child(String.valueOf(scoreresult)).setValue(1);
+        }
+        */
 
         Button btn_backhome = (Button) findViewById(R.id.btn_backhome);
         btn_backhome.setOnClickListener(new View.OnClickListener() {
@@ -92,11 +94,6 @@ public class GameResult extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        int info_inserted = 2;
-        SharedPreferences.Editor editor19 = prefs.edit();
-        editor19.putInt("try", info_inserted);
-        editor19.apply();
 
     }
 }

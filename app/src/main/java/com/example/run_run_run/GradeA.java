@@ -40,7 +40,7 @@ public class GradeA {
 
     }
 
-    Bitmap getGrade() {
+    Bitmap getGrade() { // A 이미지가 위 아래로 움직이도록 보이게 함
 
         if (aCounter == 1) {
             aCounter++;
@@ -60,6 +60,7 @@ public class GradeA {
         aCounter = 1;
 
         return grade_a4;
+
     }
 
     Rect getCollisionShape () {

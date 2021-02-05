@@ -59,6 +59,7 @@ public class GradeF {
         fCounter = 1;
 
         return grade_f4;
+
     }
 
     Rect getCollisionShape () {

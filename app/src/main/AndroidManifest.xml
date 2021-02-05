@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Run_Run_Run">
-
+        <activity android:name=".ExperimentActivity"></activity>
         <activity
             android:name=".IntroActivity"
             android:screenOrientation="landscape"

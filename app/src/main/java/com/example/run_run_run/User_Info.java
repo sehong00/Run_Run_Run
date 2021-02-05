@@ -1,7 +1,4 @@
-
 package com.example.run_run_run;
-
-import android.widget.ImageView;
 
 public class User_Info {
 
@@ -9,14 +6,16 @@ public class User_Info {
     private String playername;
     private float highscore;
     private float playerscore;
+
 /*
-    public User_Info(String photouri, String playername, Float highscore, Float playerscore){
+    public User_Info(String photouri, String playername, Float highscore, Float gpa){
         this.photouri = photouri;
         this.playername = playername;
         this.highscore = highscore;
-        this.playerscore = playerscore;
+        this.gpa = gpa;
     }
 */
+
     public User_Info(){
 
     }
@@ -53,4 +52,5 @@ public class User_Info {
     public void setPlayerscore(float playerscore) {
         this.playerscore = playerscore;
     }
+
 }

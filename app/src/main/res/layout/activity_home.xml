@@ -41,6 +41,7 @@
                 android:text="닉네임"
                 android:textSize="20dp"
                 android:textColor="#000000"
+                android:fontFamily="@font/app_main_font"
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
                 android:layout_toRightOf="@+id/iv_goggle_img">
@@ -51,7 +52,8 @@
                 android:id="@+id/highScoreTxt"
                 android:layout_height="60dp"
                 android:textColor="#000000"
-                android:text="0 점"
+                android:text="점수"
+                android:fontFamily="@font/app_main_font"
                 android:textSize="15dp"
                 android:layout_marginRight="20dp"
                 android:layout_toRightOf="@+id/tv_google_name"
@@ -62,8 +64,9 @@
                 android:layout_width="match_parent"
                 android:id="@+id/gpa"
                 android:layout_height="60dp"
+                android:fontFamily="@font/app_main_font"
                 android:textColor="#000000"
-                android:text="3.000"
+                android:text="학점   "
                 android:textSize="15dp"
                 android:layout_marginRight="20dp"
                 android:layout_toRightOf="@+id/highScoreTxt"
@@ -86,7 +89,6 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/player_list"
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </androidx.recyclerview.widget.RecyclerView>
@@ -129,6 +131,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:fontFamily="@font/app_main_font"
                     android:layout_marginBottom="10dp"
                     android:layout_alignParentBottom="true"
                     android:text="무기 선택"
@@ -158,6 +161,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/app_main_font"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_alignParentBottom="true"
@@ -194,6 +198,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="10dp"
+                android:fontFamily="@font/app_main_font"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="캐릭터 선택"
@@ -209,13 +214,15 @@
         <Button
             android:id="@+id/btn_play"
             android:layout_width="250dp"
+            android:fontFamily="@font/app_main_font"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="30dp"
             android:text="Game Start"
-            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
             android:textSize="30sp">
         </Button>
 
@@ -233,17 +240,34 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/shop"
-        android:layout_marginLeft="120dp"
+        android:src="@drawable/share"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="4dp">
     </ImageView>
 
     <ImageView
-        android:layout_width="160dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/shop"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="4dp">
+    </ImageView>
+
+    <ImageView
+        android:layout_width="150dp"
         android:layout_height="45dp"
         android:src="@drawable/money"
         android:scaleType="centerCrop"
         android:layout_marginLeft="300dp"
+        android:layout_marginTop="2dp">
+    </ImageView>
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="45dp"
+        android:src="@drawable/diamond"
+        android:scaleType="centerCrop"
+        android:layout_marginLeft="550dp"
         android:layout_marginTop="2dp">
     </ImageView>
 

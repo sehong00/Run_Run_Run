@@ -18,7 +18,7 @@ import android.view.SurfaceView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import static com.example.run_run_run.GameActivity.mediaPlayer;
+// import static com.example.run_run_run.GameActivity.mediaPlayer;
 
 
 public class GameView extends SurfaceView implements Runnable {
@@ -54,7 +54,7 @@ public class GameView extends SurfaceView implements Runnable {
 
         prefs = activity.getSharedPreferences("game", Context.MODE_PRIVATE);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // 무기를 던질 때 사운드 설정
 
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
@@ -96,14 +96,14 @@ public class GameView extends SurfaceView implements Runnable {
         grades_cplus = new GradeCplus[1];
         grades_c = new GradeC[1];
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) { // 화면에 등장하는 F 의 개수: 4개
 
             GradeF grade_f = new GradeF(getResources());
             grades_f[i] = grade_f;
 
         }
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; i++) { // 화면에 등장하는 B+, B 의 개수: 2개
 
             GradeBplus grade_bplus = new GradeBplus(getResources());
             grades_bplus[i] = grade_bplus;
@@ -112,7 +112,7 @@ public class GameView extends SurfaceView implements Runnable {
 
         }
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 1; i++) { // 화면에 등장하는 A+, A, C+, C 의 개수: 1개
 
             GradeAplus grade_aplus = new GradeAplus(getResources());
             grades_aplus[i] = grade_aplus;
@@ -158,7 +158,7 @@ public class GameView extends SurfaceView implements Runnable {
             background2.x = screenX;
         }
 
-        if (flight.isGoingUp) {
+        if (flight.isGoingUp) { // 왼쪽 위 화면 터치했을 때 상승
             flight.isGoingDown = false;
             flight.y -= 30 * screenRatioY;
         } else {
@@ -166,14 +166,14 @@ public class GameView extends SurfaceView implements Runnable {
 
         }
 
-        if (flight.isGoingDown) {
+        if (flight.isGoingDown) { // 왼쪽 아래 화면 터치했을 때 하강
             flight.isGoingUp = false;
             flight.y += 30 * screenRatioY;
         } else {
             flight.y += 3 * screenRatioY;
         }
 
-        if (flight.y < 0)
+        if (flight.y < 0) // 화면 위에 닿았을 경우
             flight.y = 0;
 
         if (flight.y >= screenY - flight.height)
@@ -186,7 +186,7 @@ public class GameView extends SurfaceView implements Runnable {
             if (knife.x > screenX)
                 trash.add(knife);
 
-            knife.x += 50 * screenRatioX;
+            knife.x += 50 * screenRatioX; // 칼의 이동 속도
 
             for (GradeF grade_f : grades_f) {
 
@@ -442,13 +442,12 @@ public class GameView extends SurfaceView implements Runnable {
 
             canvas.drawText(score + "", screenX / 2f, 164, paint);
 
-            if (isGameOver) {
+            if (isGameOver) { // 게임이 종료 되었을 때
                 isPlaying = false;
                 canvas.drawBitmap(flight.getDead(), flight.x, flight.y, paint);
                 getHolder().unlockCanvasAndPost(canvas);
                 saveIfHighScore();
                 waitBeforeExiting ();
-                GameActivity.mediaPlayer.stop();
                 return;
             }
 
@@ -463,7 +462,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     }
 
-    private void waitBeforeExiting() {
+    private void waitBeforeExiting() { // 다음 화면으로 넘어가기 전 죽은 상태로 3초 딜레이
 
         try {
             Thread.sleep(3000);
@@ -475,42 +474,22 @@ public class GameView extends SurfaceView implements Runnable {
 
     }
 
-    private void saveIfHighScore() {
-
-        if (score % 1 != 0) {
-            score -= 0.5;
-            score = (int) score;
-            round = 1;
-        }  else {
-            score = (int) score;
-            round = 0;
-        }
+    private void saveIfHighScore() { // 점수 저장
 
         SharedPreferences.Editor editor2 = prefs.edit();
-        editor2.putInt("score", (int) score);
+        editor2.putFloat("score", score);
         editor2.apply();
 
         SharedPreferences.Editor editor3 = prefs.edit();
         editor3.putInt("number_of_subjects", number_of_subjects);
         editor3.apply();
 
-        SharedPreferences.Editor editor4 = prefs.edit();
-        editor4.putInt("round", round);
-        editor4.apply();
-/*
-        if (prefs.getInt("highscore", 0) < score) {
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putInt("highscore", (int) score);
-            editor.apply();
-        }
-*/
         score = 0;
         number_of_subjects = 0;
-        round = 0;
 
     }
 
-    private void sleep () {
+    private void sleep () { // 60 Frame
         try {
             Thread.sleep(17);
         } catch (InterruptedException e) {
@@ -568,7 +547,5 @@ public class GameView extends SurfaceView implements Runnable {
         knifes.add(bullet);
 
     }
-
-
 
 }

@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class ProgressBarAnimation_2 extends Animation {
+
     private Context context_2;
     private ProgressBar progressBar_2;
     private TextView textView_2;
@@ -20,18 +21,22 @@ public class ProgressBarAnimation_2 extends Animation {
         this.textView_2 = textView;
         this.from_2 = from;
         this.to_2 = to;
+
     }
 
     @Override
     protected void applyTransformation(float interpolatedTime, Transformation t) {
         super.applyTransformation(interpolatedTime, t);
+
         float value_2 = from_2 + (to_2 - from_2) * interpolatedTime;
         progressBar_2.setProgress((int)value_2);
         textView_2.setText((int)value_2+" %");
 
         if (value_2 == to_2) {
             context_2.startActivity(new Intent(context_2.getApplicationContext(), GameActivity.class));
+
         }
 
     }
+
 }

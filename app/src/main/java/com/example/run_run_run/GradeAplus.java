@@ -60,6 +60,7 @@ public class GradeAplus {
         aplusCounter = 1;
 
         return grade_aplus4;
+
     }
 
     Rect getCollisionShape () {
